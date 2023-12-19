@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 
 	"github.com/fatih/color"
 )
@@ -50,6 +51,7 @@ func main() {
 	if userFlag != "" {
 		fmt.Printf("You provided a value for the long flag: %s\n", userFlag)
 	}
+	runStartCommand("hellp", "sfdj")
 }
 
 func HelpMenu() {
@@ -61,5 +63,14 @@ func HelpMenu() {
 	fmt.Printf("  %s, %s: %s\n", red("-help"), red("-h"), green("Show this help message"))
 	fmt.Printf("  %s: %s\n", red("-name"), green("Specify a name (default: Guest)"))
 	fmt.Printf("  %s: %s\n", red("--long-flag"), green("A flag with a long name"))
-	// Add more colored options as needed
+}
+
+// Find out why this doesnt work
+func runStartCommand(db_name string, port string) {
+	cmd := exec.Command("pwd")
+	out, err := cmd.Output()
+	if err != nil {
+		fmt.Println("could not run command: ", err)
+	}
+	fmt.Println("Output: ", string(out))
 }
